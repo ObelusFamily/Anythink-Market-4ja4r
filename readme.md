@@ -10,4 +10,10 @@ When implementing a new feature or fixing a bug, please create a new pull reques
 
 ## First setup
 
-**[TODO 05/01/2018 @vanessa-cooper]:** _It's been a while since anyone ran a fresh copy of this repo. I think it's worth documenting the steps needed to install and run the repo on a new machine?_
+This app runs on Docker. To start the app:
+
+1. Install Docker. You can find the instructions [here](https://docs.docker.com/get-docker/).
+2. Verify that Docker is running by running `docker -v` and `docker-compose -v` in your terminal.
+3. Clone the repo.
+4. Run `docker-compose up` in the root folder.
+5. The app should be running on `localhost:3000`.
