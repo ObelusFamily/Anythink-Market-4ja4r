@@ -7,8 +7,20 @@ const ItemList = (props) => {
     return <div className="py-4">Loading...</div>;
   }
 
+  if (props.items.length === 0 && props.searchTerm) {
+    return (
+      <div className="py-4" id="empty">
+        No items found for {props.searchTerm}
+      </div>
+    );
+  }
+
   if (props.items.length === 0) {
-    return <div className="py-4 no-items">No items are here... yet.</div>;
+    return (
+      <div className="py-4 no-items" id="empty">
+        No items are here... yet.
+      </div>
+    );
   }
 
   return (

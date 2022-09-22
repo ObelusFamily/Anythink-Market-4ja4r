@@ -16,10 +16,7 @@ class Banner extends React.Component {
     this.setState({ title });
     if (title.length >= 3) {
       const filteredItems = agent.Items.search(title);
-      if (filteredItems.length === 1) {
-        this.props.onSearch([]);
-      }
-      this.props.onSearch(filteredItems);
+      this.props.onSearch(filteredItems, title);
     }
   };
 
