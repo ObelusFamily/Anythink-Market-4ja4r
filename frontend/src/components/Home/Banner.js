@@ -35,9 +35,12 @@ class Banner extends React.Component {
           <div className="search-box">
             <span id="get-part">
               A place to{" "}
-              <button onClick={this.toggleSearchBarVisibility}>get</button>
+              <button id="get-part" onClick={this.toggleSearchBarVisibility}>
+                get
+              </button>
             </span>
-            <div className={`${this.state.searchBarVisible ? "" : "d-none"}`}>
+
+            {this.state.searchBarVisible && (
               <input
                 type="text"
                 id="search-box"
@@ -46,7 +49,7 @@ class Banner extends React.Component {
                 onChange={this.handleSearchInput}
                 placeholder="What is that you desire?"
               />
-            </div>
+            )}
             <span> the cool stuff.</span>
           </div>
         </div>
