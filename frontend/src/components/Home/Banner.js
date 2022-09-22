@@ -33,9 +33,11 @@ class Banner extends React.Component {
         <div className="container p-4 text-center">
           <img src={logo} alt="banner" />
           <div className="search-box">
-            <span id="get-part">
+            <span>
               A place to{" "}
-              <button onClick={this.toggleSearchBarVisibility}>get</button>
+              <button id="get-part" onClick={this.toggleSearchBarVisibility}>
+                get
+              </button>
             </span>
 
             {this.state.searchBarVisible && (
