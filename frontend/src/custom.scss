@@ -59,3 +59,17 @@ body {
 .user-info {
   min-width: 800px;
 }
+
+.search-box {
+  margin-bottom: 3rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+
+  .search-input {
+    width: 300px;
+    display: flex;
+    padding: 0.5rem;
+  }
+}

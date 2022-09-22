@@ -1,6 +1,7 @@
 import {
   ITEM_FAVORITED,
   ITEM_UNFAVORITED,
+  ITEM_SEARCH,
   SET_PAGE,
   APPLY_TAG_FILTER,
   HOME_PAGE_LOADED,
@@ -28,6 +29,11 @@ const reducer = (state = {}, action) => {
           }
           return item;
         }),
+      };
+    case ITEM_SEARCH:
+      return {
+        ...state,
+        items: action.payload.items,
       };
     case SET_PAGE:
       return {
