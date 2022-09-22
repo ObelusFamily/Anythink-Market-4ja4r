@@ -7,6 +7,7 @@ class Banner extends React.Component {
     super(props);
     this.state = {
       title: "",
+      searchBarVisible: false,
     };
   }
 
@@ -20,14 +21,23 @@ class Banner extends React.Component {
     }
   };
 
+  toggleSearchBarVisibility = () => {
+    this.setState((previousState) => ({
+      searchBarVisible: !previousState.searchBarVisible,
+    }));
+  };
+
   render() {
     return (
       <div className="banner text-white">
         <div className="container p-4 text-center">
           <img src={logo} alt="banner" />
           <div className="search-box">
-            <span id="get-part">A place to get</span>
-            <div>
+            <span id="get-part">
+              A place to{" "}
+              <button onClick={this.toggleSearchBarVisibility}>get</button>
+            </span>
+            <div className={`${this.state.searchBarVisible ? "" : "d-none"}`}>
               <input
                 type="text"
                 id="search-box"
