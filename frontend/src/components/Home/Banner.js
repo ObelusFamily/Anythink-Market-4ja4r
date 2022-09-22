@@ -35,9 +35,7 @@ class Banner extends React.Component {
           <div className="search-box">
             <span id="get-part">
               A place to{" "}
-              <button id="get-part" onClick={this.toggleSearchBarVisibility}>
-                get
-              </button>
+              <button onClick={this.toggleSearchBarVisibility}>get</button>
             </span>
 
             {this.state.searchBarVisible && (
