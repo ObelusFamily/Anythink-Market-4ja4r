@@ -49,6 +49,8 @@ const seed = async () => {
   await User.insertMany(hundredUsers);
   await Item.insertMany(hundredItems);
   await Comment.insertMany(hundredComments);
+
+  mongoose.connection.close();
   console.log("Database seeded");
   process.exit();
 };
