@@ -20,13 +20,12 @@ const createUser = () => {
 const hundredUsers = faker.helpers.uniqueArray(createUser, 100);
 
 const createItem = () => {
+  const title = faker.commerce.productName() + faker.datatype.uuid();
   return {
-    title: faker.lorem.sentence(),
-    description: faker.lorem.paragraph(),
-    image: faker.image.avatar(),
-    price: faker.commerce.price(),
-    category: faker.commerce.department(),
-    user: faker.random.arrayElement(hundredUsers)._id,
+    title,
+    slug: faker.helpers.slugify(title),
+    description: faker.commerce.productDescription(),
+    image: faker.image.abstract(),
   };
 };
 
@@ -35,8 +34,8 @@ const hundredItems = faker.helpers.uniqueArray(createItem, 100);
 const createComment = () => {
   return {
     body: faker.lorem.paragraph(),
-    user: faker.random.arrayElement(hundredUsers)._id,
-    item: faker.random.arrayElement(hundredItems)._id,
+    seller: User.findOne()._id,
+    item: Item.findOne()._id,
   };
 };
 
@@ -49,9 +48,7 @@ const seed = async () => {
   await User.insertMany(hundredUsers);
   await Item.insertMany(hundredItems);
   await Comment.insertMany(hundredComments);
-
   mongoose.connection.close();
-  console.log("Database seeded");
   process.exit();
 };
 
