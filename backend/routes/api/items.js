@@ -78,7 +78,8 @@ router.get("/", auth.optional, function (req, res, next) {
 
       return Promise.all([
         Item.find(query)
-          .limit(limit)
+          .limit(Number(limit))
+          .skip(Number(offset))
           .sort({ createdAt: "desc" })
           .populate("seller"),
         Item.count(query).exec(),
