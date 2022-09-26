@@ -78,7 +78,7 @@ router.get("/", auth.optional, function (req, res, next) {
 
       return Promise.all([
         Item.find(query)
-          .limit(10)
+          .limit(limit)
           .sort({ createdAt: "desc" })
           .populate("seller"),
         Item.count(query).exec(),
