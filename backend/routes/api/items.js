@@ -53,6 +53,10 @@ router.get("/", auth.optional, function (req, res, next) {
     query.tagList = { $in: [req.query.tag] };
   }
 
+  if (req.query.seller) {
+    query.seller = req.query.seller;
+  }
+
   Promise.all([
     req.query.seller ? User.findOne({ username: req.query.seller }) : null,
     req.query.favorited
@@ -62,7 +66,6 @@ router.get("/", auth.optional, function (req, res, next) {
     .then(function (results) {
       var seller = results[0];
       var favoriter = results[1];
-
       if (seller) {
         query.seller = seller._id;
       }
@@ -75,23 +78,16 @@ router.get("/", auth.optional, function (req, res, next) {
 
       return Promise.all([
         Item.find(query)
-          .limit(Number(limit))
-          .skip(Number(offset))
+          .limit(10)
           .sort({ createdAt: "desc" })
-          .exec(),
+          .populate("seller"),
         Item.count(query).exec(),
         req.payload ? User.findById(req.payload.id) : null,
       ]).then(async function (results) {
         var items = results[0];
         var itemsCount = results[1];
-        var user = results[2];
         return res.json({
-          items: await Promise.all(
-            items.map(async function (item) {
-              item.seller = await User.findById(item.seller);
-              return item.toJSONFor(user);
-            })
-          ),
+          items,
           itemsCount: itemsCount,
         });
       });
