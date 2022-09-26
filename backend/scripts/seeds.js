@@ -18,12 +18,12 @@ async function main() {
   connectedToDatabase();
   for (let i = 0; i < 100; i++) {
     const user = new User();
-    user.username = `user${i}`;
-    user.email = `user${i}@gmail.com`;
+    user.username = `user${i}x`;
+    user.email = `user${i}@xgmail.com`;
     await user.save();
 
     const item = new Item({
-      slug: `slug${i}`,
+      slug: `slug${i}xx`,
       title: `title ${i}`,
       description: `description ${i}`,
       seller: user,
